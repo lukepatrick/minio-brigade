@@ -15,7 +15,7 @@ events.on("exec", (e, p) => {
   var dest = "/mnt/brigade/share/hello.txt"
 
   // create job with name and container image to use
-  var minio_job = new Job("helm-job", CONTAINER) // runs minio_job 
+  var minio_job = new Job("minio-job", CONTAINER) // runs minio_job
   minio_job.storage.enabled = true
 
   //set up tasks
@@ -32,9 +32,10 @@ events.on("exec", (e, p) => {
 
   simpledata.tasks = [
     "echo hello > " + dest,
-    "echo " + e.buildID + " > " + dest,
-    "echo ==> Project " + p.name + " clones the repo at " + p.repo.cloneURL + " > " + dest,
-    "echo ==> Event " + e.type + " caused by " + e.provider + " > " + dest
+    "echo " + e.buildID + " >> " + dest,
+    "echo ==> Project " + p.name + " clones the repo at " + p.repo.cloneURL + " >> " + dest,
+    "echo ==> Event " + e.type + " caused by " + e.provider + " >> " + dest,
+    "cat " + dest
     ]
 
   console.log("==> Set up tasks, env, Job ")

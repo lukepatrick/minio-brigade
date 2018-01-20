@@ -3,15 +3,15 @@ var Minio = require('minio')
 // Instantiate the minio client with the endpoint
 // and access keys as shown below.
 var minioClient = new Minio.Client({
-    endPoint: 'play.minio.io',
+    endPoint: 'minio',
     port: 9000,
     secure: true,
-    accessKey: 'Q3AM3UQ867SPQQA43P2F',
-    secretKey: 'zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG'
+    accessKey: 'minio',
+    secretKey: 'minio123'
 });
 
 // File that needs to be uploaded.
-var file = '/tmp/photos-europe.tar'
+var file = "/mnt/brigade/share/hello.txt"
 
 // Make a bucket called europetrip.
 minioClient.makeBucket('europetrip', 'us-east-1', function(err) {
