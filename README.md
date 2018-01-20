@@ -3,10 +3,20 @@
 
 minio-brigade is a [Brigade](https://github.com/Azure/brigade) Project that utilizes [Minio](https://github.com/minio). 
 
+This Project was designed to show a Brigade Job generating data files (e.g. unit test results and code coverage),
+sharing the files in the Brigade Project Shared PVC, and finally persisting the data in an object storage
+service using a Minio-JS client.
+
 ## Prerequisites
 
 1. Have a running [Kubernetes](https://kubernetes.io/docs/setup/) environment
 2. Setup [Helm](https://github.com/kubernetes/helm) - this assumes Helm on your Host regardless of the Helm container used later on. 
+3. (optional) an NFS Provisioner - my environment uses Kubernetes clusters running on standalone bare metal machines. 
+    Recommended simple NFS Provisioner is [IlyaSemenov/nfs-provisioner-chart](https://github.com/IlyaSemenov/nfs-provisioner-chart).
+    Follow the instructions for adding the helm repo. At install set this as the default Provisioner:
+```bash
+$ helm install --name nfs-provisioner --namespace nfs-provisioner nfs-provisioner/nfs-provisioner --set defaultClass=true
+```
 
 ## Install
 
@@ -29,7 +39,7 @@ $ make brig
 ```
 Test **brig** with `brig version`
 
-### Install minio-brigade
+### Install minio-brigade Project
 
 Clone minio-brigade and change directory
 ```bash
@@ -45,7 +55,7 @@ $ helm install --name minio-brigade brigade/brigade-project -f minio-brigade.yam
 ### Set up Minio
 
 ```bash
-$ kubectl apply -f minio-deployment.yaml
+$ kubectl apply -f minio-deployment/minio-deployment.yaml
 ```
 
 ## Usage
