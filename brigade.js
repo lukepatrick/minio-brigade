@@ -27,7 +27,8 @@ events.on("exec", (e, p) => {
 
     //set container env, TODO move keys to Project Secrets 
     minio_job.env = {
-        "FILE_PATH": dest "ACCESS_KEY": "minio",
+        "FILE_PATH": dest,
+        "ACCESS_KEY": "minio",
         "SECRET_KEY": "minio123"
     }
 
