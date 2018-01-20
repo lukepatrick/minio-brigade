@@ -14,17 +14,18 @@ var minioClient = new Minio.Client({
 var file = "/mnt/brigade/share/hello.txt"
 
 // Make a bucket called europetrip.
-minioClient.makeBucket('europetrip', 'us-east-1', function(err) {
-    if (err) return console.log(err)
+//minioClient.makeBucket('europetrip', 'us-east-1', function(err) {
+//    if (err) return console.log(err)
+// assume BUCKET exists from minio-deployment.yaml JOB
 
-    console.log('Bucket created successfully in "us-east-1".')
+//    console.log('Bucket created successfully in "us-east-1".')
 
     // Using fPutObject API upload your file to the bucket europetrip.
-    minioClient.fPutObject('europetrip', 'photos-europe.tar', file, 'application/octet-stream', function(err, etag) {
+    minioClient.fPutObject('bucket', 'hello.txt', file, 'application/octet-stream', function(err, etag) {
       if (err) return console.log(err)
       console.log('File uploaded successfully.')
     });
-});
+//});
 
 
 // in brig task: node file-upload.js
