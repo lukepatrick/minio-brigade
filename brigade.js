@@ -33,8 +33,8 @@ events.on("exec", (e, p) => {
   simpledata.tasks = [
     "echo hello > " + dest,
     "echo " + e.buildID + " >> " + dest,
-    "echo ==> Project " + p.name + " clones the repo at " + p.repo.cloneURL + " >> " + dest,
-    "echo ==> Event " + e.type + " caused by " + e.provider + " >> " + dest,
+    "echo == Project " + p.name + " clones the repo at " + p.repo.cloneURL + " >> " + dest,
+    "echo == Event " + e.type + " caused by " + e.provider + " >> " + dest,
     "cat " + dest
     ]
 

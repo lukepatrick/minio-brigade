@@ -5,7 +5,7 @@ var Minio = require('minio')
 var minioClient = new Minio.Client({
     endPoint: 'minio',
     port: 9000,
-    secure: true,
+    secure: false,
     accessKey: 'minio',
     secretKey: 'minio123'
 });
