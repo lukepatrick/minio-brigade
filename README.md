@@ -17,7 +17,7 @@ service using a Minio-JS client.
 ```bash
 $ helm install --name nfs-provisioner --namespace nfs-provisioner nfs-provisioner/nfs-provisioner --set defaultClass=true
 ```
-    If  not already set up on your host, add nfs-commons
+If  not already set up on your host, add nfs-commons
 ```bash
 $ apt-get install nfs-commons
 ```
