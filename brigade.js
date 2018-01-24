@@ -67,6 +67,33 @@ events.on("exec", (e, p) => {
 
 })
 
+events.on("push", (e, p) => {
+
+    // env info
+    console.log("==> Project " + p.name + " clones the repo at " + p.repo.cloneURL)
+    console.log("==> Event " + e.type + " caused by " + e.provider)
+
+    console.log("==> I'm a push event!")
+
+    var test = new Job("test", "alpine:3.4")
+
+    test.tasks = [
+        "echo hello world!"
+    ]
+
+    console.log("==> Set up tasks, env, Job ")
+        //debug only
+        console.log(test)
+
+    console.log("==> Running Job")
+
+    // run Start Job, get Promise and print results
+    test.run().then(testResults => {
+        console.log("==> Job Results")
+        console.log(testResults.toString())
+        console.log("==> Job Done")
+     })
+})
 
 events.on("error", (e) => {
     console.log("Error event " + util.inspect(e, false, null))
