@@ -56,6 +56,13 @@ Helm install minio-brigade
 ```bash
 $ helm install --name minio-brigade brigade/brigade-project -f minio-brigade.yaml
 ```
+Optionally to allow GitHub webhooks, install your project with these set commands:
+```bash
+$ helm install --name minio-brigade brigade/brigade-project /
+    -f minio-brigade.yaml /
+    --set sharedSecret=secret_string_for_webhook /
+    --set github.token=github_oauth_token
+```
 
 ### Set up Minio
 
@@ -70,6 +77,24 @@ the *minio-brigade.yaml*
 ```bash
 $ brig run lukepatrick/minio-brigade
 ```
+
+### Review a webhook event
+
+I've used this as a webhook demo for my org. If you skip the manual run with brig
+the build won't log to your console. To get the details of your webhook build:
+
+```bash
+$ brig build list
+```
+Note the ID of the most recent TYPE *push* from PROVIDER *github*
+```bash
+$ brig build get {id}
+```
+Get the worker ID (pod id) and then the kubernetes logs:
+```bash
+$ kubectl logs brigade-worker-01c4
+```
+From here you can grab any Job pod ID's and get kubernetes logs for those if needed.
 
 ## Contribute
 
