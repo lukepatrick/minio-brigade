@@ -56,7 +56,8 @@ Helm install minio-brigade
 ```bash
 $ helm install --name minio-brigade brigade/brigade-project -f minio-brigade.yaml
 ```
-Optionally to allow GitHub webhooks, install your project with these set commands:
+Optionally to allow [GitHub webhooks](https://github.com/Azure/brigade/blob/master/docs/topics/github.md),
+ install your project with these set commands:
 ```bash
 $ helm install --name minio-brigade brigade/brigade-project /
     -f minio-brigade.yaml /
@@ -80,7 +81,8 @@ $ brig run lukepatrick/minio-brigade
 
 ### Review a webhook event
 
-I've used this as a webhook demo for my org. If you skip the manual run with brig
+I've used this as a [webhook](https://github.com/Azure/brigade/blob/master/docs/topics/github.md)
+ demo for my org. If you skip the manual run with brig
 the build won't log to your console. To get the details of your webhook build:
 
 ```bash
