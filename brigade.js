@@ -4,8 +4,9 @@ const CONTAINER = "lukepatrick/minio-node:" + CONTAINER_VERSION
 const { events, Job } = require("brigadier")
 const util = require('util')
 
-events.on("exec", (e, p) => {
+events.on("push", run_minio)
 
+function run_minio(e, p) {
     // env info
     console.log("==> Project " + p.name + " clones the repo at " + p.repo.cloneURL)
     console.log("==> Event " + e.type + " caused by " + e.provider)
@@ -45,9 +46,9 @@ events.on("exec", (e, p) => {
     ]
 
     console.log("==> Set up tasks, env, Job ")
-        //debug only
-        //console.log(minio_job)
-        //console.log(simpledata)
+    //debug only
+    //console.log(minio_job)
+    //console.log(simpledata)
 
     console.log("==> Running Job")
 
@@ -63,11 +64,12 @@ events.on("exec", (e, p) => {
             console.log("==> Job Done")
         })
     })
+}
 
 
-})
 
-events.on("push", (e, p) => {
+
+function run_test(e, p) {
 
     // env info
     console.log("==> Project " + p.name + " clones the repo at " + p.repo.cloneURL)
@@ -82,8 +84,8 @@ events.on("push", (e, p) => {
     ]
 
     console.log("==> Set up tasks, env, Job ")
-        //debug only
-        console.log(test)
+    //debug only
+    console.log(test)
 
     console.log("==> Running Job")
 
@@ -92,8 +94,8 @@ events.on("push", (e, p) => {
         console.log("==> Job Results")
         console.log(testResults.toString())
         console.log("==> Job Done")
-     })
-})
+    })
+}
 
 events.on("error", (e) => {
     console.log("Error event " + util.inspect(e, false, null))
